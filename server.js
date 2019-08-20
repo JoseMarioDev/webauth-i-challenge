@@ -47,19 +47,19 @@ server.post('/api/login', (req, res) => {
     });
 });
 
-// can only be accessed by clients with valid credentials
-// server.get('/api/users', restricted, (req, res) => {
-//   Users.find()
-//     .then(users => {
-//       res.json(users);
-//     })
-//     .catch(err => res.send(err));
-// });
+//can only be accessed by clients with valid credentials
+server.get('/api/users', (req, res) => {
+  Users.find()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => res.send(err));
+});
 
-// can only be accessed by clients with valid credentials
-// server.get('/', restricted, (req, res) => {
-//   res.send("It's alive!");
-// });
+//can only be accessed by clients with valid credentials
+server.get('/', restricted, (req, res) => {
+  res.send("It's alive!");
+});
 
 server.post('/hash', (req, res) => {
   const password = req.body.password;
